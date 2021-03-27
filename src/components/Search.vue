@@ -2,16 +2,42 @@
   <section class="section">
     <div class="container">
       <div class="search">
-        <input class="search__input" type="search" placeholder="Find user" />
-        <button class="search__button" aria-label="search">Search</button>
+        <input
+          v-model="search"
+          class="search__input"
+          type="search"
+          placeholder="Find user"
+        />
+        <button
+          class="search__button"
+          aria-label="search"
+          @click="onSearch(search)"
+        >
+          Search
+        </button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   name: 'search',
+  data: () => ({
+    search: '',
+  }),
+  methods: {
+    ...mapActions(['setSearch', 'getUsers']),
+    onSearch(value) {
+      if (!value) {
+        return;
+      }
+      this.setSearch(value);
+      this.getUsers();
+    },
+  },
 };
 </script>
 
