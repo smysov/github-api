@@ -32,30 +32,6 @@ export default {
   margin-bottom: 20px;
   letter-spacing: 2.5px;
   color: #e0e0e0;
-
-  &::before,
-  &::after {
-    position: absolute;
-    height: 12px;
-    content: '';
-    top: 0px;
-    height: 12px;
-  }
-
-  &::before {
-    left: 85px;
-    border: 2px solid #e0e0e0;
-    border-radius: 50%;
-    width: 12px;
-  }
-
-  &::after {
-    top: 8px;
-    left: 98px;
-    background-color: #e0e0e0;
-    width: 2px;
-    transform: rotate(-45deg);
-  }
 }
 
 .users {
@@ -70,7 +46,7 @@ export default {
     align-items: center;
     row-gap: 15px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #E4EBF5;
     margin: 0 auto;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
@@ -82,7 +58,7 @@ export default {
 
     &:hover {
       transform: scale(1.01);
-      box-shadow: 0 0 15px 1px rgb(215, 215, 0);
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.6)
     }
   }
 
@@ -91,7 +67,7 @@ export default {
     height: 80px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid gold;
+    border: 3px solid #9fa9c5;
 
     @media (min-width: 480px) {
       max-width: 120px;
@@ -106,21 +82,22 @@ export default {
 
   &__nickname {
     font-size: 16px;
+    margin-bottom: auto;
   }
 
   &__info {
-    color: gold;
+    color: #8d84d8;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
-    border: 2px solid gold;
+    border: 2px solid #8d84d8;
     padding: 5px 10px;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: pointer;
 
     &:hover {
-      color: orange;
-      border-color: orange;
+      color: #5b0eeb;
+      border-color: #5b0eeb;
     }
   }
 }

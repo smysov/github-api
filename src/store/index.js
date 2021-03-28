@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
     async getUsers({ commit, state }) {
       try {
-        const response = await axios.get(`users?q=${state.search}+in:user&per_page=100`);
+        const response = await axios.get(`/search/users?q=${state.search}&per_page=100`);
         commit('SET_USERS', response.items);
       } catch (error) {
         console.log(error);
