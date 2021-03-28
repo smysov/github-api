@@ -1,30 +1,61 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title" v-if="users">Result</h1>
-      <ul class="users">
-        <user-item v-for="user in users" :key="user.id" :user="user" />
-      </ul>
+      <div class="users-wrapper">
+        <template v-if="users">
+          <h1 class="title">Result</h1>
+          <ul class="users">
+            <user-item v-for="user of showLimitUsers" :key="user.id" :user="user" />
+          </ul>
+          <button
+            class="users__button-show"
+            v-show="isShowButton"
+            @click="showMore"
+            >Show more</button
+          >
+        </template>
+      </div>
     </div>
   </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import userItem from '@/components/UserItem';
 
 export default {
   name: 'Users',
   components: { userItem },
+  methods: {
+    ...mapActions({
+      changeLimit: 'setLimit',
+    }),
+    showMore() {
+      this.changeLimit(12);
+    },
+  },
   computed: {
     ...mapGetters({
       users: 'getUsers',
+      limit: 'getLimit',
     }),
+    showLimitUsers() {
+      return this.users.slice(0, this.limit);
+    },
+    isShowButton() {
+      return this.users.length > 12 && this.limit <= this.users.length;
+    },
   },
 };
 </script>
 
 <style lang="scss">
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .title {
   position: relative;
   font-size: 16px;
@@ -32,6 +63,7 @@ export default {
   margin-bottom: 20px;
   letter-spacing: 2.5px;
   color: #e0e0e0;
+  align-self: flex-start;
 }
 
 .users {
@@ -39,6 +71,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 20px;
+  margin-bottom: 30px;
 
   &__item {
     display: flex;
@@ -46,7 +79,7 @@ export default {
     align-items: center;
     row-gap: 15px;
     padding: 10px;
-    background-color: #E4EBF5;
+    background-color: #e4ebf5;
     margin: 0 auto;
     transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
@@ -58,7 +91,7 @@ export default {
 
     &:hover {
       transform: scale(1.01);
-      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.6)
+      box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.6);
     }
   }
 
@@ -98,6 +131,21 @@ export default {
     &:hover {
       color: #5b0eeb;
       border-color: #5b0eeb;
+    }
+  }
+
+  &__button-show {
+    color: #e4ebf5;
+    background-color: #6d5dfc;
+    box-shadow: inset 0.2rem 0.2rem 1rem #8abdff, inset -0.2rem -0.2rem 1rem #5b0eeb,
+      0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:active {
+      box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
     }
   }
 }
