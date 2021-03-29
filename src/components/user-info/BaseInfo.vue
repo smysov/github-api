@@ -14,7 +14,7 @@
       </p>
     </div>
     <div class="user-info__optional">
-      <a class="user-info__link" :href="user.url" target="_blank">Visit Github Profile</a>
+      <a class="user-info__link" :href="user.html_url" target="_blank">Visit Github Profile</a>
       <p class="user-info__title">
         Username:
         <span class="user-info__description">{{ user.login }}</span>

@@ -33,3 +33,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.wrapper__content {
+  min-height: 85vh;
+}
+</style>
