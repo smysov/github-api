@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'preloader',
+  name: 'Preloader',
 };
 </script>
 

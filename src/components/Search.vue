@@ -20,7 +20,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'search',
+  name: 'Search',
   data: () => ({
     search: '',
   }),
