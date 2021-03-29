@@ -38,6 +38,7 @@ export default {
   mounted() {
     const { login } = this.$route.params;
     this.$store.dispatch('getUser', login);
+    this.$store.dispatch('setLimitInitial', 5);
   },
   computed: {
     ...mapGetters({

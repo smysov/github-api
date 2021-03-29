@@ -25,6 +25,9 @@ import preloader from '@/components/Preloader';
 export default {
   name: 'Users',
   components: { userItem, preloader },
+  mounted() {
+    this.$store.dispatch('setLimitInitial', 12);
+  },
   methods: {
     ...mapActions({
       changeLimit: 'setLimit',
