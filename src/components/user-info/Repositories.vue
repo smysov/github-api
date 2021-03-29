@@ -15,11 +15,11 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import repositoryItem from '@/components/user-info/RepositoryItem';
+import RepositoryItem from '@/components/user-info/RepositoryItem';
 
 export default {
   name: 'Repositories',
-  components: { repositoryItem },
+  components: { RepositoryItem },
   mounted() {
     this.$store.dispatch('setLimitInitial', 5);
   },
