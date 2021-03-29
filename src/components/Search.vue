@@ -25,12 +25,15 @@ export default {
     search: '',
   }),
   methods: {
-    ...mapActions(['setSearch', 'getUsers']),
+    ...mapActions({
+      findUser: 'setSearch',
+      getUsers: 'getUsers',
+    }),
     onSearch(value) {
       if (!value) {
         return;
       }
-      this.setSearch(value);
+      this.findUser(value);
       this.getUsers();
       this.search = '';
     },
