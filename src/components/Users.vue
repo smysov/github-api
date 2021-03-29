@@ -1,16 +1,14 @@
 <template>
-  <section class="section">
+  <section class="section result">
     <div class="container">
       <div class="users-wrapper">
+        <preloader v-show="preloader" />
         <template v-if="users">
           <h1 class="title">Result</h1>
           <ul class="users">
             <user-item v-for="user of showLimitUsers" :key="user.id" :user="user" />
           </ul>
-          <button
-            class="users__button-show"
-            v-show="isShowButton"
-            @click="showMore"
+          <button class="users__button-show" v-show="isShowButton" @click="showMore"
             >Show more</button
           >
         </template>
@@ -22,10 +20,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import userItem from '@/components/UserItem';
+import preloader from '@/components/Preloader';
 
 export default {
   name: 'Users',
-  components: { userItem },
+  components: { userItem, preloader },
   methods: {
     ...mapActions({
       changeLimit: 'setLimit',
@@ -38,6 +37,7 @@ export default {
     ...mapGetters({
       users: 'getUsers',
       limit: 'getLimit',
+      preloader: 'getLoader',
     }),
     showLimitUsers() {
       return this.users.slice(0, this.limit);
@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style lang="scss">
+.result {
+  position: relative;
+  padding-top: 40px;
+}
 .users-wrapper {
   display: flex;
   flex-direction: column;
