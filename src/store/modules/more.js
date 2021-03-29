@@ -8,7 +8,6 @@ const moreStore = {
     },
     SET_LIMIT_INITIAL(state, number) {
       state.limit = number;
-      console.log(state.limit);
     },
   },
   actions: {

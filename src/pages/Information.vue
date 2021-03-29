@@ -22,18 +22,18 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import preloader from '@/components/Preloader';
-import baseInfo from '@/components/user-info/BaseInfo';
-import optionalInfo from '@/components/user-info/OptionalInfo';
-import repositories from '@/components/user-info/Repositories';
+import Preloader from '@/components/Preloader';
+import BaseInfo from '@/components/user-info/BaseInfo';
+import OptionalInfo from '@/components/user-info/OptionalInfo';
+import Repositories from '@/components/user-info/Repositories';
 
 export default {
   name: 'Information',
   components: {
-    preloader,
-    baseInfo,
-    optionalInfo,
-    repositories,
+    Preloader,
+    BaseInfo,
+    OptionalInfo,
+    Repositories,
   },
   mounted() {
     const { login } = this.$route.params;

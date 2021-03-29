@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import users from '@/components/Users';
-import search from '@/components/Search';
+import Users from '@/components/Users';
+import Search from '@/components/Search';
 
 export default {
   name: 'Home',
-  components: { users, search },
+  components: { Users, Search },
 };
 </script>
