@@ -6,11 +6,12 @@
     <h2 class="users__nickname"
       >Nickname: <span>{{ user.login }}</span></h2
     >
-    <a class="users__info">Show more</a>
+    <router-link class="users__info" :to="/user/ + user.login">Show more</router-link>
   </li>
 </template>
 
 <script>
+
 export default {
   name: 'UserItem',
   props: {
