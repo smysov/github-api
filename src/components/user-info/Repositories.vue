@@ -59,28 +59,60 @@ export default {
   }
 
   &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #c8d0e7;
     padding: 20px;
     width: 100%;
+    background-color: #f1f1f1;
   }
 
   &__link {
     font-size: 16px;
+    text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
     color: #6f59ff;
     transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
 
     @media (min-width: 480px) {
-      font-size: 18px;
+      font-size: 20px;
     }
 
     @media (min-width: 768px) {
-      font-size: 20px;
+      font-size: 22px;
     }
 
     &:hover {
       color: #412ebe;
+    }
+  }
+
+  &__info-wrapper {
+    display: flex;
+    align-items: baseline;
+    column-gap: 10px;
+  }
+
+  &__info {
+    display: flex;
+    align-items: baseline;
+    font-size: 30px;
+    font-weight: 600;
+    column-gap: 5px;
+  }
+
+  &__icon {
+    &_fork {
+      width: 30px;
+      height: 35px;
+      align-self: end;
+    }
+    &_star {
+      width: 35px;
+      height: 35px;
+      align-self: end;
     }
   }
 
