@@ -3,7 +3,10 @@
     <div class="navbar">
       <div class="container">
         <div class="navbar__content">
-          <span class="navbar__logo">Github Finder</span>
+          <div class="navbar__logo-wrapper">
+            <img class="navbar__icon" src="../assets/images/icons/github.svg" alt="logo" />
+            <span class="navbar__logo">Github Finder</span>
+          </div>
           <ul class="navbar__list">
             <li v-for="link of links" :key="link.name">
               <router-link class="navbar__link" :to="link.url">{{
