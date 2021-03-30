@@ -12,7 +12,7 @@
             <button @click="onShowRepos">Show repositories</button>
           </div>
           <transition name="opacity">
-            <repositories v-show="isShowRepos"/>
+            <repositories v-show="isShowRepos" />
           </transition>
         </template>
       </div>
@@ -39,6 +39,7 @@ export default {
     const { login } = this.$route.params;
     this.$store.dispatch('getUser', login);
     this.$store.dispatch('setLimitInitial', 5);
+    this.$store.dispatch('setRepositories', login);
   },
   computed: {
     ...mapGetters({
@@ -51,16 +52,13 @@ export default {
   methods: {
     ...mapActions(['setShowRepos', 'setRepositories']),
     onShowRepos() {
-      const { login } = this.$route.params;
       this.setShowRepos();
-      this.setRepositories(login);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .info-wrapper {
   display: flex;
   flex-direction: column;
@@ -84,10 +82,12 @@ button {
   }
 }
 
-.opacity-enter-active, .opacity-leave-active {
-  transition: all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.opacity-enter, .opacity-leave-to {
+.opacity-enter,
+.opacity-leave-to {
   opacity: 0;
   transform: translateY(100px);
 }
