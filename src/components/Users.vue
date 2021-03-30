@@ -19,12 +19,15 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import userItem from '@/components/UserItem';
-import preloader from '@/components/Preloader';
+import UserItem from '@/components/UserItem';
+import Preloader from '@/components/Preloader';
 
 export default {
   name: 'Users',
-  components: { userItem, preloader },
+  components: { UserItem, Preloader },
+  mounted() {
+    this.$store.dispatch('setLimitInitial', 12);
+  },
   methods: {
     ...mapActions({
       changeLimit: 'setLimit',

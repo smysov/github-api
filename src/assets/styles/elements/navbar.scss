@@ -19,8 +19,13 @@ header {
   &__logo {
     font-weight: 700;
     letter-spacing: 1.5px;
+    
     @media (min-width: 480px) {
       font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 22px;
     }
   }
   &__list {
@@ -40,6 +45,14 @@ header {
     color: #fff;
     &:hover {
       color: #5ea2fa;
+    }
+
+    @media (min-width: 480px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 22px;
     }
   }
 }
