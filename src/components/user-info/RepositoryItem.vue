@@ -7,15 +7,15 @@
       <div class="repositories__info">
         <img
           class="repositories__icon repositories__icon_fork"
-          src="../assets/images/icons/fork.svg"
-          alt=""
+          src="/images/fork.svg"
+          alt="Forks count"
         />{{ repositories.forks_count }}<span class="repositories__quantity"></span>
       </div>
       <div class="repositories__info">
         <img
           class="repositories__icon repositories__icon_star"
-          src="../assets/images/icons/star.svg"
-          alt=""
+          src="/images/star.svg"
+          alt="Stars count"
         />{{ repositories.stargazers_count }}<div class="repositories__quantity"></div>
       </div>
     </div>

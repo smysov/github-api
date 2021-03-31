@@ -4,7 +4,7 @@
       <div class="container">
         <div class="navbar__content">
           <div class="navbar__logo-wrapper">
-            <img class="navbar__icon" src="../assets/images/icons/github.svg" alt="logo" />
+            <img class="navbar__icon" src="/images/github.svg" alt="logo" />
             <span class="navbar__logo">Github Finder</span>
           </div>
           <ul class="navbar__list">
