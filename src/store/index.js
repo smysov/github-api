@@ -6,6 +6,7 @@ import preloader from './modules/preloader';
 import information from './modules/information';
 import repositories from './modules/repositories';
 import more from './modules/more';
+import modal from './modules/modal';
 
 Vue.use(Vuex);
 
@@ -16,5 +17,6 @@ export default new Vuex.Store({
     information,
     repositories,
     more,
+    modal,
   },
 });

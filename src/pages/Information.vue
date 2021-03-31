@@ -3,7 +3,7 @@
     <section class="section information">
       <div class="container">
         <preloader v-if="preloader" />
-        <template v-else>
+        <template v-else-if="!preloader && isInfoUser">
           <div class="info-wrapper">
             <ul class="user-info">
               <base-info :user="userInfo" />
@@ -12,11 +12,21 @@
             <button @click="onShowRepos">Show repositories</button>
           </div>
           <transition name="opacity">
-            <repositories v-show="isShowRepos"/>
+            <repositories v-show="isShowRepos" />
           </transition>
         </template>
       </div>
     </section>
+    <transition name="error">
+      <modal :title="title" v-show="isShowModal">
+        <div slot="error" class="error">
+          <p class="error__description"
+            >Exceeded the limit. You can try again in an hour</p
+          >
+          <a href="/" class="error__link" @click="changeIsShowModal(false)">to home</a>
+        </div>
+      </modal>
+    </transition>
   </div>
 </template>
 
@@ -26,6 +36,7 @@ import Preloader from '@/components/Preloader';
 import BaseInfo from '@/components/user-info/BaseInfo';
 import OptionalInfo from '@/components/user-info/OptionalInfo';
 import Repositories from '@/components/user-info/Repositories';
+import Modal from '@/components/Modal';
 
 export default {
   name: 'Information',
@@ -34,11 +45,16 @@ export default {
     BaseInfo,
     OptionalInfo,
     Repositories,
+    Modal,
   },
+  data: () => ({
+    title: 'Error',
+  }),
   mounted() {
     const { login } = this.$route.params;
     this.$store.dispatch('getUser', login);
     this.$store.dispatch('setLimitInitial', 5);
+    this.$store.dispatch('setRepositories', login);
   },
   computed: {
     ...mapGetters({
@@ -46,21 +62,20 @@ export default {
       preloader: 'getLoader',
       isShowRepos: 'getShowRepos',
       repositories: 'getRepositories',
+      isShowModal: 'getIsShowModal',
+      isInfoUser: 'getisInfoUser',
     }),
   },
   methods: {
-    ...mapActions(['setShowRepos', 'setRepositories']),
+    ...mapActions(['setShowRepos', 'setRepositories', 'changeIsShowModal']),
     onShowRepos() {
-      const { login } = this.$route.params;
       this.setShowRepos();
-      this.setRepositories(login);
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .info-wrapper {
   display: flex;
   flex-direction: column;
@@ -84,11 +99,65 @@ button {
   }
 }
 
-.opacity-enter-active, .opacity-leave-active {
-  transition: all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+.opacity-enter-active,
+.opacity-leave-active {
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.opacity-enter, .opacity-leave-to {
+.opacity-enter,
+.opacity-leave-to {
   opacity: 0;
   transform: translateY(100px);
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__description {
+    font-size: 20px;
+    max-width: 280px;
+    text-align: center;
+
+    @media (min-width: 480px) {
+      font-size: 22px;
+      max-width: 330px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+      max-width: initial;
+    }
+  }
+
+  &__link {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    width: initial;
+    border: 2px solid #6d5dfc;
+    background-color: #6d5dfc;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 0;
+    transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+    @media (min-width: 480px) {
+      font-size: 22px;
+    }
+
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.error-enter-active,
+.error-leave-active {
+  transition: transform 0.3s linear;
+}
+.error-enter,
+.error-leave-to {
+  transform: scale(1.1);
 }
 </style>

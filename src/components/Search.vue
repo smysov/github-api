@@ -28,9 +28,11 @@ export default {
     ...mapActions({
       findUser: 'setSearch',
       getUsers: 'getUsers',
+      showModal: 'changeIsShowModal',
     }),
     onSearch(value) {
       if (!value) {
+        this.showModal(true);
         return;
       }
       this.findUser(value);
