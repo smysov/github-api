@@ -4,7 +4,6 @@ function setParametrs(config) {
     client_id: process.env.VUE_APP_GITHUB_CLIENT_ID,
     client_secret: process.env.VUE_APP_GITHUB_SECRET,
   });
-  console.log(config);
   return config;
 }
 
