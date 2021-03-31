@@ -16,6 +16,20 @@
 
 </p>
 
+Apps for finding a GitHub user and viewing information!
+The application implements:
+- [x] Search for users
+- [x] Show more button (users, repositories)
+- [x] Sort repositories by name, number of stars, number of forks
+- [x] Modal window for the form and errors if the request limit is exceeded
+
+
+<p align="center">
+
+<img  src="https://i.ibb.co/gS8yYnh/preview.png">
+
+</p>
+
 ---
 
 # [View a demo](https://github-finder6337.netlify.app/)
