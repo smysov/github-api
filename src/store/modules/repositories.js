@@ -4,6 +4,8 @@ const repositoriesStore = {
   state: {
     isShowRepos: false,
     repositories: [],
+    currentSortName: 'name',
+    currentSortDir: 'asc',
   },
   mutations: {
     SET_SHOW_REPOS(state) {
@@ -11,6 +13,15 @@ const repositoriesStore = {
     },
     SET_REPOSITORIES(state, repos) {
       state.repositories = repos;
+    },
+    SORT(state, value) {
+      console.log(value);
+      console.log(state.currentSortName);
+      if (value === state.currentSortName) {
+        state.currentSortDir = state.currentSortDir === 'asc' ? 'desc' : 'asc';
+      }
+
+      state.currentSortName = value;
     },
   },
   actions: {
@@ -26,10 +37,28 @@ const repositoriesStore = {
         console.log(error);
       }
     },
+    sort({ commit }, value) {
+      commit('SORT', value);
+    },
   },
   getters: {
     getShowRepos: ({ isShowRepos }) => isShowRepos,
     getRepositories: ({ repositories }) => repositories,
+    getSortedRepositiries({ repositories, currentSortName, currentSortDir }) {
+      return repositories.sort((a, b) => {
+        let mod = 1;
+
+        if (currentSortDir === 'desc') mod = -1;
+        if (a[currentSortName] < b[currentSortName]) {
+          return mod * -1;
+        }
+        if (a[currentSortName] > b[currentSortName]) {
+          return mod * 1;
+        }
+
+        return 0;
+      });
+    },
   },
 };
 
