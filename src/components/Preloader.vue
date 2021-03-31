@@ -10,10 +10,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .preloader {
   position: absolute;
-  top: -5%;
+  top: -2%;
   left: 50%;
   display: flex;
   flex-direction: column;
@@ -21,6 +21,18 @@ export default {
   row-gap: 10px;
   padding-top: 30px;
   transform: translateX(-50%);
+
+  @media (min-width: 480px) {
+    top: -1.5%;
+  }
+
+  @media (min-width: 768px) {
+    top: -3%;
+  }
+
+  @media (min-width: 968px) {
+    top: -5%;
+  }
 }
 .loader {
   height: 40px;
