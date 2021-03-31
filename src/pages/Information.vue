@@ -3,7 +3,7 @@
     <section class="section information">
       <div class="container">
         <preloader v-if="preloader" />
-        <template v-else>
+        <template v-else-if="!preloader && isInfoUser">
           <div class="info-wrapper">
             <ul class="user-info">
               <base-info :user="userInfo" />
@@ -23,9 +23,7 @@
           <p class="error__description"
             >Exceeded the limit. You can try again in an hour</p
           >
-          <button class="error__link" to="/" @click="changeIsShowModal(false)"
-            >Okey</button
-          >
+          <a href="/" class="error__link" @click="changeIsShowModal(false)">to home</a>
         </div>
       </modal>
     </transition>
@@ -65,6 +63,7 @@ export default {
       isShowRepos: 'getShowRepos',
       repositories: 'getRepositories',
       isShowModal: 'getIsShowModal',
+      isInfoUser: 'getisInfoUser',
     }),
   },
   methods: {
@@ -117,17 +116,24 @@ button {
 
   &__description {
     font-size: 20px;
+    max-width: 280px;
+    text-align: center;
 
     @media (min-width: 480px) {
       font-size: 22px;
+      max-width: 330px;
     }
 
     @media (min-width: 768px) {
       font-size: 24px;
+      max-width: initial;
     }
   }
 
   &__link {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
     width: initial;
     border: 2px solid #6d5dfc;
     background-color: #6d5dfc;
@@ -135,6 +141,10 @@ button {
     padding: 5px 15px;
     border-radius: 0;
     transition: transform 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+    @media (min-width: 480px) {
+      font-size: 22px;
+    }
 
     &:hover {
       transform: scale(0.95);
