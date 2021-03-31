@@ -33,8 +33,12 @@ const repositoriesStore = {
         const response = await axios.get(`/users/${login}/repos?&per_page=100`);
         commit('SET_REPOSITORIES', response);
         dispatch('setLimitInitial', 5);
+        dispatch('changeIsInfoUser', true);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 403) {
+          dispatch('changeIsShowModal', true);
+          dispatch('changeIsInfoUser', false);
+        }
       }
     },
     sort({ commit }, value) {
