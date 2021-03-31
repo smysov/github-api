@@ -34,7 +34,9 @@ const repositoriesStore = {
         commit('SET_REPOSITORIES', response);
         dispatch('setLimitInitial', 5);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 403) {
+          dispatch('changeIsShowModal', true);
+        }
       }
     },
     sort({ commit }, value) {

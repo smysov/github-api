@@ -16,7 +16,9 @@ const informationStore = {
         const response = await axios.get(`/users/${login}`);
         commit('SET_INFO_USER', response);
       } catch (error) {
-        console.log(error);
+        if (error.response.status === 403) {
+          dispatch('changeIsShowModal', true);
+        }
       } finally {
         dispatch('setLoader', false);
       }
