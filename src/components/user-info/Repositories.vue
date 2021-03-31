@@ -1,5 +1,10 @@
 <template>
   <div class="repositories">
+    <div class="sort">
+      <button class="sort__button" @click="sort('name')">Name</button>
+      <button class="sort__button" @click="sort('forks_count')">Fork</button>
+      <button class="sort__button" @click="sort('stargazers_count')">Stars</button>
+    </div>
     <ul class="repositories__list">
       <repository-item
         v-for="repos of showLimitRepositories"
@@ -26,6 +31,7 @@ export default {
   methods: {
     ...mapActions({
       changeLimit: 'setLimit',
+      sort: 'sort',
     }),
     showMore() {
       this.changeLimit(5);
@@ -34,10 +40,11 @@ export default {
   computed: {
     ...mapGetters({
       repositories: 'getRepositories',
+      sortRepositories: 'getSortedRepositiries',
       limit: 'getLimit',
     }),
     showLimitRepositories() {
-      return this.repositories.slice(0, this.limit);
+      return this.sortRepositories.slice(0, this.limit);
     },
     isShowButton() {
       return this.repositories.length > 5 && this.limit <= this.repositories.length;
@@ -129,6 +136,86 @@ export default {
 
     &:active {
       box-shadow: inset 0.2rem 0.2rem 1rem #5b0eeb, inset -0.2rem -0.2rem 1rem #8abdff;
+    }
+  }
+}
+
+.sort {
+  display: flex;
+  justify-content: space-evenly;
+
+  &__button {
+    position: relative;
+    font-size: 18px;
+    text-transform: capitalize;
+    text-align: left;
+    background-color: transparent;
+    padding: 0;
+    max-width: 78px;
+
+    @media (min-width: 480px) {
+      font-size: 20px;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 22px;
+      max-width: 90px;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      top: 11px;
+      right: 16px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 8px solid black;
+
+      @media (min-width: 480px) {
+        top: 13px;
+        right: 8px;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-to-width: 12px;
+      }
+
+      @media (min-width: 768px) {
+        top: 14px;
+        right: 4px;
+        border-left-width: 8px;
+        border-right-width: 8px;
+        border-to-width: 14px;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 16px;
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 8px solid black;
+
+      @media (min-width: 480px) {
+        top: 2px;
+        right: 8px;
+        border-left-width: 6px;
+        border-right-width: 6px;
+        border-to-width: 12px;
+      }
+
+      @media (min-width: 768px) {
+        top: 2px;
+        right: 4px;
+        border-left-width: 8px;
+        border-right-width: 8px;
+        border-to-width: 14px;
+      }
     }
   }
 }
