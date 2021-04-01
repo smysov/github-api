@@ -80,7 +80,7 @@ export default {
     border: none;
     border-radius: 1rem;
     font-size: 18px;
-    padding: 15px 10px 15px 60px;
+    padding: 15px 10px 15px 80px;
     box-shadow: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
     background: none;
     color: #9baacf;
